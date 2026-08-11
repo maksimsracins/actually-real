@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "3946ef4b-5303-498e-a484-468d4ff220c8"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.maksimracins.ai-scanner-server"
+    }
+  }
+}
