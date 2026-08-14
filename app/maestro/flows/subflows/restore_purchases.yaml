@@ -1,0 +1,9 @@
+appId: com.actuallyreal.scanner
+---
+# Verifies the restore action is reachable and doesn't crash the app.
+# It does not assert an entitlement change — on a sandbox/test account with
+# no prior purchase, RevenueCat legitimately restores nothing.
+- tapOn: "Settings"
+- tapOn:
+    id: "restore-purchases-button"
+- assertVisible: "Settings"

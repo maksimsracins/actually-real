@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "Actually Real?",
+    "slug": "ai-scanner",
+    "scheme": "aiscanner",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.actuallyreal.scanner",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Actually Real? needs camera access so you can photograph an image to scan.",
+        "NSPhotoLibraryUsageDescription": "Actually Real? needs photo library access so you can pick an image to scan.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Actually Real? needs photo library access so you can pick an image to scan.",
+          "cameraPermission": "Actually Real? needs camera access so you can photograph an image to scan."
+        }
+      ],
+      "expo-font"
+    ],
+    "extra": {
+      "apiBaseUrl": "https://ai-scanner-backend-production.up.railway.app",
+      "supabaseUrl": "https://jlpiboqauelbumnnqpeq.supabase.co",
+      "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpscGlib3FhdWVsYnVtbm5xcGVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwOTY2NjIsImV4cCI6MjA5ODY3MjY2Mn0.bNDdAoEZgjWaHzseTs2fUZeHodEqz3ja-sTouNtXXQs",
+      "revenueCatApiKeyIos": "appl_bdnyqZsWsHNUwCYEyNMBXVtBXpq",
+      "revenueCatEntitlementId": "unlimited",
+      "router": {},
+      "eas": {
+        "projectId": "3a6836dc-d84c-4ba9-b7ed-482aa6210bf3"
+      }
+    },
+    "owner": "maksimracins"
+  }
+}

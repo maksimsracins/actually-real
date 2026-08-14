@@ -1,0 +1,9 @@
+appId: com.actuallyreal.scanner
+---
+# Assumes the app was launched fresh (clearState + clearKeychain) so onboarding
+# has not been marked complete in SecureStore yet.
+- assertVisible: "Actually Real?"
+- assertVisible: "Scan any photo"
+- tapOn:
+    id: "onboarding-continue"
+- assertVisible: "Take Photo"

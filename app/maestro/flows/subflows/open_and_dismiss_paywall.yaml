@@ -1,0 +1,15 @@
+appId: com.actuallyreal.scanner
+---
+# Navigates to Settings and opens the paywall. The paywall itself is rendered
+# natively by RevenueCatUI (react-native-purchases-ui), so its internal
+# layout/copy comes from your RevenueCat dashboard template and isn't
+# controlled by app code — this flow only verifies the app correctly opens
+# and can dismiss it, not the native purchase-button internals.
+- tapOn: "Settings"
+# "Upgrade to Unlimited" only renders on the free plan. This flow assumes
+# a fresh test account with no active entitlement.
+- tapOn:
+    id: "upgrade-button"
+- assertVisible: "Upgrade"
+- back
+- assertVisible: "Settings"

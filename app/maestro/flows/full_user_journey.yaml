@@ -1,0 +1,23 @@
+appId: com.actuallyreal.scanner
+---
+# End-to-end pass through the whole app: onboarding -> scan a photo ->
+# result -> settings -> paywall -> restore. Run against a simulator that
+# has a fresh app install and no prior sandbox purchase, so the free-plan
+# assumptions in the subflows hold.
+- launchApp:
+    clearState: true
+    clearKeychain: true
+    permissions:
+      photos: "allow"
+      camera: "allow"
+- addMedia:
+    - "../fixtures/test-photo.jpg"
+
+- runFlow: subflows/complete_onboarding.yaml
+- runFlow: subflows/scan_photo_from_library.yaml
+- tapOn:
+    id: "scan-again-button"
+- assertVisible: "Take Photo"
+
+- runFlow: subflows/open_and_dismiss_paywall.yaml
+- runFlow: subflows/restore_purchases.yaml

@@ -1,0 +1,45 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "node": "22.13.0",
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": false,
+        "image": "macos-tahoe-26.5-xcode-26.6"
+      }
+    },
+    "development-simulator": {
+      "extends": "development",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "node": "22.13.0",
+      "distribution": "internal",
+      "ios": {
+        "simulator": false,
+        "image": "macos-tahoe-26.5-xcode-26.6"
+      }
+    },
+    "production": {
+      "node": "22.13.0",
+      "autoIncrement": true,
+      "ios": {
+        "image": "macos-tahoe-26.5-xcode-26.6"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6787242410"
+      }
+    }
+  }
+}
