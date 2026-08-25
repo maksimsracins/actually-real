@@ -9,7 +9,7 @@ appId: com.actuallyreal.scanner
     point: "50%,40%" # first thumbnail in the system photo picker grid
 - assertVisible: "Analyzing image…"
 # This hits the real backend (scanImage), so give it real network time.
-# If the daily free-scan cap has been hit, the app shows an upgrade prompt
+# If the weekly free-scan cap has been hit, the app shows an upgrade prompt
 # instead of a result — that's a separate, expected outcome, not a failure
 # of the scan flow itself.
 - extendedWaitUntil:

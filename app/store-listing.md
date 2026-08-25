@@ -22,7 +22,7 @@ HONEST ABOUT UNCERTAINTY
 - No detector is ever 100% certain, and we don't pretend otherwise. Every scan shows you each individual signal — including when they disagree — so you can judge for yourself instead of trusting a single black-box number.
 
 FREE TO START
-- Get 5 scans a day at no cost. Upgrade to Unlimited for unrestricted daily scanning.
+- Get 5 scans a week at no cost. Upgrade to Unlimited for unrestricted scanning.
 
 Perfect for checking suspicious photos, verifying images before sharing, or just satisfying your curiosity about what's real.
 
@@ -50,4 +50,4 @@ Using Apple's standard EULA (no custom terms) — do not fill in the "License Ag
 ## App Review Notes
 This app provides probabilistic AI-image detection using a third-party classification API (SightEngine) combined with our own heuristic signals (EXIF metadata, compression-artifact analysis, C2PA content credentials). Results are explicitly presented as confidence levels, not certainties — the app includes a persistent "why we're not 100% sure" panel on every result. No detector can guarantee 100% accuracy; this is disclosed in-app and in the App Store description.
 
-The free tier allows a limited number of scans per day (server-enforced). The Unlimited subscription removes this cap. Test account: not required — the app works immediately with anonymous sign-in (no login/signup needed to test core functionality).
+The free tier allows a limited number of scans per week (server-enforced). The Unlimited subscription removes this cap. Test account: not required — the app works immediately with anonymous sign-in (no login/signup needed to test core functionality).

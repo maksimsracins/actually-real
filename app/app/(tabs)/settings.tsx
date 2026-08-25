@@ -26,7 +26,7 @@ export default function SettingsScreen() {
         <Text style={[styles.cardBody, { color: theme.textSecondary }]}>
           {isUnlimited
             ? "You have unlimited scans."
-            : "A limited number of free scans per day. Upgrade for unlimited scans."}
+            : "A limited number of free scans per week. Upgrade for unlimited scans."}
         </Text>
         {!isUnlimited && !loading && (
           <Pressable

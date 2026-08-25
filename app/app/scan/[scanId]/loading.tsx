@@ -28,7 +28,7 @@ export default function ScanLoadingScreen() {
         console.error("scanImage failed:", err);
         if (err instanceof ScanApiError && err.status === 429) {
           setCapReached(true);
-          setError("You've used today's free scans. Come back tomorrow, or upgrade for unlimited scans.");
+          setError("You've used this week's free scans. Come back next week, or upgrade for unlimited scans.");
         } else {
           setError(err instanceof ScanApiError ? err.message : "Something went wrong while scanning.");
         }

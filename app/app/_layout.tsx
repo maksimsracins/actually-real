@@ -23,7 +23,7 @@ export default function RootLayout() {
   useEffect(() => {
     configurePurchases();
     // Link RevenueCat's app_user_id to our Supabase user id so the backend
-    // can verify entitlement status server-side (the daily cap must not
+    // can verify entitlement status server-side (the weekly cap must not
     // trust a client-reported "I'm subscribed" flag).
     ensureAnonymousSession()
       .then((session) => Purchases.logIn(session.user.id))
