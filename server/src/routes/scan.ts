@@ -6,7 +6,8 @@ import { runHeuristics } from "../heuristics/index.js";
 import { mergeSignals } from "../services/merge.js";
 import { persistScan } from "../services/persistence.js";
 import { requireAuth } from "../middleware/auth.js";
-import { enforceDailyCap } from "../middleware/dailyCap.js";
+import { enforceWeeklyCap } from "../middleware/weeklyCap.js";
+import { toSharpCompatibleJpeg, UnsupportedImageFormatError } from "../utils/imageFormat.js";
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -15,7 +16,7 @@ const upload = multer({
 
 export const scanRouter = Router();
 
-scanRouter.post("/scan", requireAuth, enforceDailyCap, upload.single("image"), async (req, res) => {
+scanRouter.post("/scan", requireAuth, enforceWeeklyCap, upload.single("image"), async (req, res) => {
   const file = req.file;
   if (!file) {
     return res.status(400).json({ error: "Missing 'image' file field." });
@@ -24,22 +25,27 @@ scanRouter.post("/scan", requireAuth, enforceDailyCap, upload.single("image"), a
   const scanId = randomUUID();
 
   try {
+    const sharpCompatibleBuffer = await toSharpCompatibleJpeg(file.buffer);
+
     const [detectorSignal, heuristicSignals] = await Promise.all([
       detectAiGenerated(file.buffer, file.originalname || "upload.jpg"),
-      runHeuristics(file.buffer),
+      runHeuristics(file.buffer, sharpCompatibleBuffer),
     ]);
 
     const result = await mergeSignals({
       scanId,
       detectorSignal,
       heuristicSignals,
-      imageBuffer: file.buffer,
+      imageBuffer: sharpCompatibleBuffer,
     });
 
-    const persisted = await persistScan(req.userId!, result, file.buffer);
+    const persisted = await persistScan(req.userId!, result, sharpCompatibleBuffer);
 
     return res.json(persisted);
   } catch (err) {
+    if (err instanceof UnsupportedImageFormatError) {
+      return res.status(415).json({ error: err.message });
+    }
     if (err instanceof SightEngineError) {
       return res.status(502).json({ error: err.message });
     }

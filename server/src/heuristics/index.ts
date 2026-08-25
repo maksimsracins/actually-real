@@ -8,11 +8,11 @@ export interface HeuristicResults {
   regions: HeatmapRegion[];
 }
 
-export async function runHeuristics(imageBuffer: Buffer): Promise<HeuristicResults> {
+export async function runHeuristics(originalBuffer: Buffer, sharpCompatibleBuffer: Buffer): Promise<HeuristicResults> {
   const [exifSignal, elaResult, c2paSignal] = await Promise.all([
-    runExifHeuristic(imageBuffer),
-    runElaHeuristic(imageBuffer),
-    runC2paHeuristic(imageBuffer),
+    runExifHeuristic(originalBuffer),
+    runElaHeuristic(sharpCompatibleBuffer),
+    runC2paHeuristic(originalBuffer),
   ]);
 
   return {
