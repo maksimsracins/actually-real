@@ -26,9 +26,15 @@ scanRouter.post("/scan", requireAuth, enforceWeeklyCap, upload.single("image"), 
 
   try {
     const sharpCompatibleBuffer = await toSharpCompatibleJpeg(file.buffer);
+    // SightEngine can't decode HEIC either, so it gets the same normalized
+    // buffer as the sharp-based heuristics — with a matching filename, since
+    // a ".heic" name on now-JPEG bytes would just trade one format mismatch
+    // for another.
+    const wasConverted = sharpCompatibleBuffer !== file.buffer;
+    const detectorFilename = wasConverted ? "upload.jpg" : file.originalname || "upload.jpg";
 
     const [detectorSignal, heuristicSignals] = await Promise.all([
-      detectAiGenerated(file.buffer, file.originalname || "upload.jpg"),
+      detectAiGenerated(sharpCompatibleBuffer, detectorFilename),
       runHeuristics(file.buffer, sharpCompatibleBuffer),
     ]);
 
