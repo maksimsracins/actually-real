@@ -22,7 +22,7 @@
     "heic-convert": "^2.1.0",
     "multer": "^2.2.0",
     "sharp": "^0.33.5",
-    "zod": "^3.23.8"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
